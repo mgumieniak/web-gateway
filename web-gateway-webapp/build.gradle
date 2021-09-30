@@ -1,0 +1,28 @@
+plugins {
+    id 'org.springframework.boot' version "${spring_boot}"
+    id 'com.google.cloud.tools.jib' version "${jib_version}"
+}
+
+dependencies {
+    // BOM
+    implementation platform("org.springframework.boot:spring-boot-dependencies:${spring_boot}")
+    implementation platform("org.springframework.cloud:spring-cloud-dependencies:${spring_cloud}")
+
+    // PROJECTS
+    implementation project(':web-gateway-models')
+
+    //SPRING
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+
+
+    // TEST
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

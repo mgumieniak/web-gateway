@@ -1,0 +1,13 @@
+spring:
+  profiles.active: dev
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://my-owncloud.xyz/auth/realms/cv-app
+
+management.endpoints.web.exposure:
+  include: "health"
+
+
+
